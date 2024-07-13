@@ -1,0 +1,239 @@
+.mainPage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.options {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  padding-top: 40px;
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.optionsProfilePic {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+
+.optionslink {
+  text-decoration: none;
+  color: gray;
+}
+
+.posts {
+  flex: 1;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.friends {
+  flex: 0.2;
+  min-width: 250px;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.optionslinks {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.optionslinks i,
+.optionslinks .optionslink {
+  font-size: 20px;
+  color: gray;
+  font-weight: bold;
+}
+
+.optionslinks i {
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.optionslink:hover {
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.newPostButton {
+  border: none;
+  height: auto;
+  font-size: 20px;
+  width: fit-content;
+  margin-top: 30px;
+  border-radius: 5px;
+  background-color: rgb(189, 42, 42);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.newPostButton:hover {
+  background-color: #f10707;
+  color: white;
+  transition: 0.2s;
+}
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.friends input {
+  width: 75%;
+  height: 25px;
+}
+.friendsSearch {
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  justify-content: center;
+  width: 85%;
+}
+
+.friendsSearch i {
+  font-size: large;
+  height: auto;
+  width: fit-content;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.friendsSearch input {
+  font-size: larger;
+  width: 100%;
+}
+.suggestionsHead {
+  text-align: left;
+  width: 85%;
+  text-decoration: underline;
+  font-weight: bold;
+  text-decoration-thickness: 2px;
+  color: gray;
+}
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 70%;
+  justify-content: left;
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.suggestions h4 {
+  margin: 0;
+  width: 150px;
+  margin-top: 20px;
+  font-size: larger;
+}
+.suggestionsImage {
+  border-radius: 50%;
+  height: 50px;
+  min-width: 50px;
+}
+.suggestionsFollow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.suggestionsFollow button {
+  width: 50%;
+  border: 0;
+  border-radius: 10px;
+  font-size: larger;
+  background-color: rgb(189, 42, 42);
+  color: white;
+  cursor: pointer;
+}
+
+.posts {
+  border-left: 1px solid gray;
+  border-bottom:1px solid gray ;
+  border-top: 0;
+}
+.postTextarea {
+  text-align: center;
+}
+.postTextarea textarea {
+  resize: none;
+  width: 97%;
+  height: 100px;
+  font-size: larger;
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 10px;
+}
+.postTextareaOptions {
+  justify-content: space-between;
+  margin: 2px;
+  display: flex;
+}
+
+.postTextareaOptions button {
+  width: auto;
+  min-width: 100px;
+  height: 50px;
+  font-size: larger;
+  background-color: rgb(189, 42, 42);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px;
+}
+.cancelBtn {
+  margin-right: 0 !important  ;
+}
+.postOption {
+  display: flex;
+  align-items: end;
+}
+
+@media screen and (max-width: 974px) {
+  .mainPage {
+    flex-direction: column;
+  }
+  .options {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 40px;
+    width: 100%;
+    max-width: none;
+    min-width: none;
+  }
+  .optionsSection {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .optionsProfilePic {
+    margin-bottom: 0px;
+  }
+  .newPostButton {
+    margin-top: 0px;
+  }
+  .optionslinks {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

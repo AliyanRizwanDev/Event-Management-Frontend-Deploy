@@ -1,0 +1,105 @@
+.loginPage {
+  display: flex;
+}
+
+.leftDesign {
+  background: linear-gradient(220.55deg, #ffdc99 0%, #ff62c0 100%);
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  background-color: blue;
+  height: 100vh;
+}
+.leftDesign h4 {
+  color: red;
+}
+
+.loginImg {
+  margin-top: 200px;
+  width: 300px;
+}
+.Login {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+}
+.LoginForm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.LoginForm label {
+  font-size: larger;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: gray;
+}
+.LoginForm input {
+  font-size: larger;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.LoginForm h1 {
+  color: rgb(240, 66, 66);
+  font-weight: bold;
+}
+
+.LoginForm button {
+  font-size: large;
+  background-color: red;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  height: 41.6px;
+}
+
+.LoginForm p span {
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.LoginForm p span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(163, 2, 2);
+}
+@media screen and (max-width: 914px) {
+  .leftDesign {
+    display: none;
+  }
+  .Login {
+    flex: 1;
+  }
+  .LoginForm {
+    width: 75%;
+  }
+}
+.errorMessage {
+  color: red;
+}
+
+.LoginForm select {
+  font-size: larger;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  appearance: none;
+  background-color: #fff;
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}

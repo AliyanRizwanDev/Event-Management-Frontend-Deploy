@@ -1,0 +1,17 @@
+.navBar {
+  display: flex;
+  justify-content: left;
+  padding: 10px;
+  padding-top: 15px;
+  background: rgb(247, 247, 247);
+  border-bottom: 1px solid lightgray;
+}
+.navBar img {
+  width: 100%;
+
+}
+
+.LogoImg {
+  width: 200px;
+  margin-left: 20px;
+}

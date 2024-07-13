@@ -1,0 +1,169 @@
+.myEvents {
+  padding: 20px;
+}
+
+.eventList {
+  list-style: none;
+  padding: 0;
+}
+
+.eventItem {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eventItem.upcoming {
+  border-left: 5px solid green;
+}
+
+.eventItem.past {
+  border-left: 5px solid grey;
+}
+
+.eventItem.canceled {
+  border-left: 5px solid red;
+}
+
+.eventDetails {
+  flex: 1;
+}
+
+.eventActions {
+  display: flex;
+  gap: 10px;
+}
+
+.detailButton,
+.cancelButton,
+.contactButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.detailButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.cancelButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.contactButton {
+  background-color: #ffc107;
+  color: black;
+}
+
+.detailButton:hover {
+  background-color: #0056b3;
+}
+
+.cancelButton:hover {
+  background-color: #c82333;
+}
+
+.contactButton:hover {
+  background-color: #e0a800;
+}
+
+.eventStatus {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* ExploreEvents.module.css */
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-height: 80%;
+  overflow-y: auto;
+
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.feedbackForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedbackForm label {
+  margin-bottom: 10px;
+}
+
+.feedbackForm select,
+.feedbackForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.feedbackForm textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.feedbackForm button , .downloadButton{
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+}
+
+.feedbackForm button:hover , .downloadButton:hover{
+  background-color: #c82333;
+}
+
+.feedbackForm button:last-child {
+  background-color: #dc3545;
+}
+
+.feedbackForm button:last-child:hover {
+  background-color: #c82333;
+}
+
+.feedbackButton ,.ticketButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+}
+
+.feedbackButton:hover,.ticketButton:hover {
+  background-color: #c82333;
+}
