@@ -35,7 +35,7 @@ function App() {
     } else {
       dispatch(userActions.LoggedOut());
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, dispatch]);
 
   function AttendeeRoutes() {
     return (

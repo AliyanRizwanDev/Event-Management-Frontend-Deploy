@@ -3,10 +3,9 @@ import axios from "axios";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
 import Spinner from "../../utils/Spinner";
+import logger from "../../utils/logger";
 
 export default function EditEventModal({ eventId }) {
-  const [error, setError] = useState(null);
-  const [event, setEvent] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -34,7 +33,7 @@ export default function EditEventModal({ eventId }) {
           }
         );
         const eventData = response.data;
-        setEvent(eventData);
+        // populate form fields from fetched event
         setTitle(eventData.title);
         setDescription(eventData.description);
         setDate(eventData.date.split("T")[0]);
@@ -43,7 +42,7 @@ export default function EditEventModal({ eventId }) {
         setTicketTypes(eventData.ticketTypes);
         setDiscountCodes(eventData.discountCodes || []);
       } catch (error) {
-        console.error("Error fetching event:", error);
+        logger.error("Error fetching event:", error);
         toast.error("Error fetching event");
       } finally {
         setLoading(false);
@@ -135,7 +134,7 @@ export default function EditEventModal({ eventId }) {
 
     try {
       setLoading(true);
-      const response = await axios.put(
+      await axios.put(
         `${API_ROUTE}/user/events/${eventId}`,
         formData,
         {
@@ -147,7 +146,7 @@ export default function EditEventModal({ eventId }) {
       );
       toast.success("Event updated successfully");
     } catch (error) {
-      console.error("Error updating event:", error);
+      logger.error("Error updating event:", error);
       toast.error("Error updating event");
     } finally {
       setLoading(false);
@@ -161,7 +160,7 @@ export default function EditEventModal({ eventId }) {
   return (
     <div className="container mt-5">
       <h1 className="text-center text-secondary mb-4">Edit Event</h1>
-      {error && <div className="alert alert-danger">{error}</div>}
+      {/* errors are shown via toast; keep UI minimal */}
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-3">
           <label htmlFor="title">Event Title:</label>

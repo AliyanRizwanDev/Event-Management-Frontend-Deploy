@@ -43,8 +43,9 @@ export default function Login() {
         toast.success(`Welcome ${response.data.user.firstName}!!!`);
         nav(`/${response.data.user.role}`);
       } catch (error) {
-        setApiError(error.response?.data?.error || "An error occurred");
-        toast.error(error.response?.data?.error || "An error occurred");
+        const msg = error.response?.data?.error || error.message || "An error occurred";
+        setApiError(msg);
+        toast.error(msg);
       } finally {
         setLoading(false);
       }

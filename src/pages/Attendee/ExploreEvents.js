@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Home from "../../utils/Home";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { toast } from "react-toastify";
 import { API_ROUTE } from "../../env";
 import Spinner from "../../utils/Spinner";
@@ -16,20 +17,26 @@ const ExploreEvents = () => {
   const [itemsPerPage] = useState(6);
   const [bookedEvents, setBookedEvents] = useState(new Set());
 
-  const data = JSON.parse(localStorage.getItem("user"));
+  const stored = JSON.parse(localStorage.getItem("user")) || {};
 
   useEffect(() => {
     const fetchUsersAndEvents = async () => {
+      const local = JSON.parse(localStorage.getItem("user"));
+      if (!local || !local.token) {
+        setLoading(false);
+        return;
+      }
+
       try {
         const [eventsResponse, usersResponse] = await Promise.all([
           axios.get(`${API_ROUTE}/user/events`, {
             headers: {
-              Authorization: `Bearer ${data.token}`,
+              Authorization: `Bearer ${local.token}`,
             },
           }),
           axios.get(`${API_ROUTE}/user/profile/`, {
             headers: {
-              Authorization: `Bearer ${data.token}`,
+              Authorization: `Bearer ${local.token}`,
             },
           }),
         ]);
@@ -40,13 +47,13 @@ const ExploreEvents = () => {
         const bookedEventIds = new Set(
           eventsResponse.data
             .filter((event) =>
-              event.attendees.some((attendee) => attendee === data._id)
+              event.attendees.some((attendee) => attendee === local._id)
             )
             .map((event) => event._id)
         );
         setBookedEvents(bookedEventIds);
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         toast.error("Failed to load data");
       } finally {
         setLoading(false);
@@ -54,7 +61,7 @@ const ExploreEvents = () => {
     };
 
     fetchUsersAndEvents();
-  }, [data.token, data._id]);
+  }, []);
 
   const handleSearch = (e) => {
     setSearch(e.target.value.toLowerCase());
@@ -81,24 +88,24 @@ const ExploreEvents = () => {
 
     const ticketData = {
       eventId: event._id,
-      attendee: data._id,
+              attendee: stored._id,
       ticketType: ticketType.type,
       discountCode: discountCode,
     };
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         `${API_ROUTE}/user/events/${event._id}/book`,
         ticketData,
         {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
+            headers: {
+              Authorization: `Bearer ${stored.token}`,
+            },
         }
       );
 
       toast.success(
-        `Ticket booked successfully. Final price: $${response.data.finalPrice}`
+        `Ticket booked successfully. Final price: $${res.data.finalPrice}`
       );
 
       setBookedEvents(new Set(bookedEvents).add(event._id));
@@ -191,14 +198,21 @@ const ExploreEvents = () => {
                   <div key={event._id} className="col-md-6 col-lg-4 mb-4">
                     <div className="card h-100 border-danger">
                       {event.image && (
-                        <img
-                          src={`${API_ROUTE}/api/uploads/${event.image}`}
-                          className="card-img-top"
-                          alt="Event"
-                          name="image"
-                          style={{ height: "200px" }}
-                        />
-                      )}
+                              (() => {
+                                const imageSrc = event.image.startsWith('http')
+                                  ? event.image
+                                  : `${API_ROUTE}/api/uploads/${event.image}`;
+                                return (
+                                  <img
+                                    src={imageSrc}
+                                    className="card-img-top"
+                                    alt="Event"
+                                    name="image"
+                                    style={{ height: "200px", objectFit: 'cover' }}
+                                  />
+                                );
+                              })()
+                            )}
                       <div className="card-body">
                         <h2 className="card-title text-secondary">
                           {event.title}

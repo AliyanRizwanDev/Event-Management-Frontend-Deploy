@@ -33,7 +33,7 @@ export default function Signup() {
     setPasswordError(!isPasswordValid);
     setConfirmPasswordError(!isConfirmPasswordValid);
 
-    if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+    if (isEmailValid && isPasswordValid && isConfirmPasswordValid && firstname.trim() && lastname.trim()) {
       setLoading(true);
       const data = {
         firstName: firstname,

@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Spinner from "../../utils/Spinner";
 import { API_ROUTE } from "../../env";
+import logger from "../../utils/logger";
 
 const AllEventsDetails = () => {
   const [events, setEvents] = useState([]);
@@ -49,7 +50,7 @@ const AllEventsDetails = () => {
                   );
                   return attendeeResponse.data.userProfile;
                 } catch (error) {
-                  console.warn(`Skipping deleted or invalid attendee ID: ${attendeeId}`);
+                  logger.warn(`Skipping deleted or invalid attendee ID: ${attendeeId}`);
                   return null;
                 }
               })
@@ -63,7 +64,7 @@ const AllEventsDetails = () => {
       } catch (error) {
         setError("Error fetching event data");
         toast.error("Error fetching event data");
-        console.error("Error fetching event data:", error);
+        logger.error("Error fetching event data:", error);
       } finally {
         setLoading(false);
       }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HomeAdminSide from "../../utils/HomeAdminSide";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { toast } from "react-toastify";
 import Spinner from "../../utils/Spinner";
 import { API_ROUTE } from "../../env";
@@ -40,7 +41,7 @@ const ProfileAdmin = () => {
       })
       .catch((error) => {
         setError("Error fetching profile data.");
-        console.error(error);
+          logger.error(error);
         setLoading(false);
       });
   }, [data._id, data.token]);
@@ -71,7 +72,7 @@ const ProfileAdmin = () => {
       toast.success("Profile Updated");
     } catch (error) {
       toast.error("Error updating profile");
-      console.error(error);
+        logger.error(error);
     }
   };
 
@@ -98,7 +99,7 @@ const ProfileAdmin = () => {
       setPasswordError("");
     } catch (error) {
       setPasswordError("Error updating password.");
-      console.error(error);
+        logger.error(error);
     }
   };
 

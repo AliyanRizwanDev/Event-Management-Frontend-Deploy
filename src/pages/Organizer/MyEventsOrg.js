@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import logger from "../../utils/logger";
 import Modal from "react-modal";
 import { API_ROUTE } from "../../env";
 import HomeOrgSide from "../../utils/HomeOrgSide";
@@ -57,7 +58,7 @@ const MyEventsOrg = () => {
 
       setEvents(userCreatedEvents);
     } catch (error) {
-      console.error("Error fetching events:", error);
+      logger.error("Error fetching events:", error);
       toast.error("Error fetching events");
     } finally {
       setLoading(false);
@@ -76,7 +77,7 @@ const MyEventsOrg = () => {
       setEvents(events.filter((event) => event._id !== eventId));
       toast.success("Event canceled successfully");
     } catch (error) {
-      console.error("Error canceling event:", error);
+      logger.error("Error canceling event:", error);
       toast.error("Error canceling event");
     } finally {
       setLoading(false);
@@ -135,12 +136,19 @@ const MyEventsOrg = () => {
                   </div>
                   {event.image && (
                     <div className="col-md-4">
-                      <img
-                        src={`${API_ROUTE}/api/uploads/${event.image}`}
-                        alt="Event"
-                        className="img-fluid mb-3 my-4"
-                        style={{ height: "200px", objectFit: "cover" ,width: "400px"}}
-                      />
+                      {(() => {
+                        const imageSrc = event.image.startsWith('http')
+                          ? event.image
+                          : `${API_ROUTE}/api/uploads/${event.image}`;
+                        return (
+                          <img
+                            src={imageSrc}
+                            alt="Event"
+                            className="img-fluid mb-3 my-4"
+                            style={{ height: "200px", objectFit: "cover", width: "400px" }}
+                          />
+                        );
+                      })()}
                     </div>
                   )}
                 </div>

@@ -1,17 +1,20 @@
 .navBar {
   display: flex;
-  justify-content: left;
-  padding: 10px;
-  padding-top: 15px;
-  background: rgb(247, 247, 247);
-  border-bottom: 1px solid lightgray;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 20px;
+  background: #fafafa;
+  border-bottom: 1px solid #e9ecef;
 }
 .navBar img {
   width: 100%;
-
 }
 
 .LogoImg {
   width: 200px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
+
+.navActions{margin-left:auto;display:flex;gap:12px;align-items:center}
+.navLink{color:#333;text-decoration:none;padding:6px 10px;border-radius:6px}
+.navLink:hover{background:#f0f0f0}

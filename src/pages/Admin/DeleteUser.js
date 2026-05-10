@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
 import HomeAdminSide from "../../utils/HomeAdminSide";
@@ -30,7 +31,7 @@ export default function DeleteUser() {
       );
       setUsers(attendees);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      logger.error("Error fetching users:", error);
       toast.error("Error fetching users");
     } finally {
       setLoading(false);
@@ -50,7 +51,7 @@ export default function DeleteUser() {
       setUsers(users.filter((user) => user._id !== userId));
       toast.success("User deleted successfully");
     } catch (error) {
-      console.error("Error deleting user:", error);
+      logger.error("Error deleting user:", error);
       toast.error("Error deleting user");
     } finally {
       setLoading(false);

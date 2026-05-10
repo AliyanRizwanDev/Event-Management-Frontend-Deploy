@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Spinner from "../../utils/Spinner";
 import { API_ROUTE } from "../../env";
+import logger from "../../utils/logger";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -22,7 +23,7 @@ const getAllEvents = async (token) => {
 
     return userCreatedEvents;
   } catch (error) {
-    console.error("Error fetching events:", error);
+    logger.error("Error fetching events:", error);
     throw error;
   }
 };
@@ -168,8 +169,8 @@ export default function Analytics() {
         setAttendeesMap(attendeesMap);
       } catch (error) {
         setError("Error fetching event data");
+        logger.error("Error fetching event data:", error);
         toast.error("Error fetching event data");
-        console.error("Error fetching event data:", error);
       } finally {
         setLoading(false);
       }

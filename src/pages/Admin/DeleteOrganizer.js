@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
 import HomeAdminSide from "../../utils/HomeAdminSide";
@@ -31,7 +32,7 @@ export default function DeleteOrganizer() {
       );
       setUsers(organizers);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      logger.error("Error fetching users:", error);
       toast.error("Error fetching users");
     } finally {
       setLoading(false);
@@ -51,7 +52,7 @@ export default function DeleteOrganizer() {
       setRefresh(!refresh);
       toast.success("Organizer deleted successfully");
     } catch (error) {
-      console.error("Error deleting organizer:", error);
+      logger.error("Error deleting organizer:", error);
       toast.error("Error deleting organizer");
     } finally {
       setLoading(false);

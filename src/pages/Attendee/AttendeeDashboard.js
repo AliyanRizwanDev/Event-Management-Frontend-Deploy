@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import logger from "../../utils/logger";
 import Home from "../../utils/Home";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
@@ -40,7 +41,7 @@ const AttendeeDashboard = () => {
         setUsers(usersResponse.data);
         setNotifications(notificationsResponse.data);
       } catch (error) {
-        console.error(error);
+            logger.error(error);
         toast.error("Failed to load data");
       } finally {
         setLoadingEvents(false);

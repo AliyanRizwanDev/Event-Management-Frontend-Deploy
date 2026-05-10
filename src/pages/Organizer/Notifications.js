@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
 import HomeOrgSide from "../../utils/HomeOrgSide";
@@ -17,28 +18,28 @@ export default function Notifications() {
   const data = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetchData();
-  }, [refresh]);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `${API_ROUTE}/user/notifications/${data._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${data.token}`,
+            },
+          }
+        );
+        setNotifications(response.data);
+      } catch (error) {
+        logger.error("Error fetching notifications:", error);
+        toast.error("Error fetching notifications");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `${API_ROUTE}/user/notifications/${data._id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        }
-      );
-      setNotifications(response.data);
-    } catch (error) {
-      console.error("Error fetching notifications:", error);
-      toast.error("Error fetching notifications");
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetchData();
+  }, [refresh, data._id, data.token]);
 
   const cancelNotification = async (id) => {
     try {
@@ -51,7 +52,7 @@ export default function Notifications() {
       setRefresh(!refresh);
       toast.success("Notification deleted successfully");
     } catch (error) {
-      console.error("Error deleting notification:", error);
+      logger.error("Error deleting notification:", error);
       toast.error("Error deleting notification");
     } finally {
       setLoading(false);
@@ -79,7 +80,7 @@ export default function Notifications() {
       toast.success("Notification created successfully");
       setRefresh(!refresh);
     } catch (error) {
-      console.error("Error creating notification:", error);
+      logger.error("Error creating notification:", error);
       toast.error("Error creating notification");
     } finally {
       setLoading(false);

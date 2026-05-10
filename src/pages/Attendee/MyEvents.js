@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Home from "../../utils/Home";
 import axios from "axios";
+import logger from "../../utils/logger";
 import { API_ROUTE } from "../../env";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
@@ -34,7 +35,7 @@ const MyEvents = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error(error);
+        logger.error(error);
         setError("Failed to load events");
         setLoading(false);
       });
@@ -67,8 +68,8 @@ const MyEvents = () => {
         )
       );
     } catch (error) {
+      logger.error(error);
       toast.error("Error submitting feedback");
-      console.error(error);
     }
   };
 

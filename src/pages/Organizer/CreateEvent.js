@@ -3,6 +3,7 @@ import HomeOrgSide from "../../utils/HomeOrgSide";
 import axios from "axios";
 import { API_ROUTE } from "../../env";
 import { toast } from "react-toastify";
+import logger from "../../utils/logger";
 import Spinner from "../../utils/Spinner";
 
 export default function CreateEvent() {
@@ -119,7 +120,7 @@ export default function CreateEvent() {
     setError(null);
 
     try {
-      const response = await axios.post(`${API_ROUTE}/user/events/`, formData, {
+      await axios.post(`${API_ROUTE}/user/events/`, formData, {
         headers: {
           Authorization: `Bearer ${user.token}`,
           "Content-Type": "multipart/form-data",
@@ -127,7 +128,7 @@ export default function CreateEvent() {
       });
       toast.success("Event created successfully");
     } catch (error) {
-      console.error("Error creating event:", error);
+      logger.error("Error creating event:", error);
       setError("Error creating event");
       toast.error("Error creating event");
     } finally {

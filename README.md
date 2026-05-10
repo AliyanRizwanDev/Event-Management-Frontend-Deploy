@@ -68,3 +68,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+--
+
+Portfolio Showcase
+------------------
+
+Quick notes for recruiters and demoing this project:
+
+- Demo accounts and seed instructions: see the backend `DEMO_ACCOUNTS.md` at `../Event-Management-Backend-Deploy/DEMO_ACCOUNTS.md`.
+- To run locally:
+
+```bash
+# Backend (from Event-Management-Backend-Deploy)
+npm install
+npm run seed    # creates demo users/events
+npm start       # or npm run dev depending on your scripts
+
+# Frontend (from Event-Management-Frontend-Deploy)
+npm install
+npm start
+```
+
+- Screenshots / GIFs: add in `/docs/media/` (placeholders in repo); see `../SHOWCASE.md` for recording checklist and quick script.
+- Short elevator pitch: Event Management app with roles (admin / organizer / attendee), JWT auth, file uploads, and demo seed data.
+
+If you're using this repo for a portfolio, add a short video (60–90s) and link it at the top of this README for quick recruiter review.

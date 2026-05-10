@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 import styles from "./MyTicket.module.css";
 import html2canvas from "html2canvas";
 import { toast } from "react-toastify";
+import logger from './logger';
 
 const MyTicket = ({ event }) => {
   const ticketRef = useRef(null);
@@ -27,7 +28,7 @@ const MyTicket = ({ event }) => {
         pdf.save(`${event.title}_Ticket.pdf`);
       })
       .catch((error) => {
-        console.error("Error generating PDF: ", error);
+        logger.error("Error generating PDF: ", error);
         toast.error("Oops! Something went wrong while generating the PDF.");
       });
   };
